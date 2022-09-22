@@ -24,7 +24,7 @@ function find(c){
 const APIkey = "78b9ad515dca05a6cf7e5d876a98f14b";
 
 // Display current weather and future weather 
-function displayWeather(event){
+function showWeather(event){
     event.preventDefault();
     if(citySearch.val().trim()!==""){
         city=citySearch.val().trim();
@@ -161,7 +161,7 @@ function clearHistory(event){
 }
     
 //Click Handlers
-$("#search-button").on("click",displayWeather);
+$("#search-button").on("click",showWeather);
 $(document).on("click",invokePastSearch);
 $(window).on("load",loadlastCity);
 $("#clear-history").on("click",clearHistory);
