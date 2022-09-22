@@ -87,3 +87,36 @@ function weatherCurrent(city){
     });
 
 }
+
+//Fetch UVindex data
+function UVIndex(ln,lt){
+    const uvqURL="https://api.openweathermap.org/data/2.5/uvi?appid="+ APIkey+"&lat="+lt+"&lon="+ln;
+    fetch(uvqURL).then(function(response){
+        return response.json();}).then(data => {
+            $(cUvindex).html(data.value);
+        })
+}
+        
+// Here we display the 5 days forecast for the current city.
+function forecast(cityid){
+    const dayover= false;
+    const queryforcastURL="https://api.openweathermap.org/data/2.5/forecast?id="+cityid+"&appid="+APIkey;
+    fetch(queryforcastURL).then(function(response){
+        return response.json();}).then(data => {
+            for (i=0;i<5;i++){
+            const date= new Date((data.list[((i+1)*8)-1].dt)*1000).toLocaleDateString();
+            const iconcode= data.list[((i+1)*8)-1].weather[0].icon;
+            const iconurl="https://openweathermap.org/img/wn/"+iconcode+".png";
+            const tempK= data.list[((i+1)*8)-1].main.temp;
+            const tempF=(((tempK-273.5)*1.80)+32).toFixed(0);
+            const humidity= data.list[((i+1)*8)-1].main.humidity;
+            const windSpeed = data.list[((i+1)*8)-1].wind.speed.toFixed(0);
+            
+            $("#forecastDate"+i).html(date);
+            $("#forecastIcon"+i).html("<img src="+iconurl+">");
+            $("#forecastTemp"+i).html(tempF+"&#8457");
+            $("#forecastHumidity"+i).html(humidity+"%");
+            $("#forecastWs"+i).html(windSpeed+ "mph");
+        }    
+    })
+}
