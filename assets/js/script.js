@@ -120,3 +120,21 @@ function forecast(cityid){
         }    
     })
 }
+    
+//Dynamically add searched city to history
+function addToList(c){
+    const listEl= $("<li>"+c.toUpperCase()+"</li>");
+    $(listEl).attr("class","list-group-item");
+    $(listEl).attr("data-value",c.toUpperCase());
+    $(".list-group").append(listEl);
+}
+    
+//Reselect and display city from history when clicked
+function invokePastSearch(event){
+    const liEl=event.target;
+    if (event.target.matches("li")){
+        city=liEl.textContent.trim();
+        weatherCurrent(city);
+    }
+}
+    
