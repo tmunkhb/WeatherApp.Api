@@ -138,3 +138,30 @@ function invokePastSearch(event){
     }
 }
     
+// render function
+function loadlastCity(){
+    $("ul").empty();
+    var sCity = JSON.parse(localStorage.getItem("cityname"));
+    if(sCity!==null){
+        sCity=JSON.parse(localStorage.getItem("cityname"));
+        for(i=0; i<sCity.length;i++){
+            addToList(sCity[i]);
+        }
+        city=sCity[i-1];
+        weatherCurrent(city);
+    }
+}
+    
+//Clear history function
+function clearHistory(event){
+    event.preventDefault();
+    sCity=[];
+    localStorage.removeItem("cityname");
+    document.location.reload();
+}
+    
+//Click Handlers
+$("#search-button").on("click",displayWeather);
+$(document).on("click",invokePastSearch);
+$(window).on("load",loadlastCity);
+$("#clear-history").on("click",clearHistory);
