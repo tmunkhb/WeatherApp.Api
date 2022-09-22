@@ -1,7 +1,7 @@
 # WeatherApp
 
 ## Description
-A weather app that uses openweathermap api to display current weather and 5 day forecast with temperature, humidity, windspeed and uv index. 
+A weather app that uses openweathermap api to display current city's weather and 5 day forecast with temperature, humidity, windspeed and uv index. 
 
 ## How to use the app
 Search city in the input search bar and click search icon button. Searched cities will be automatically added to the history, simply click on the city in history to view the current weather for that city. 
